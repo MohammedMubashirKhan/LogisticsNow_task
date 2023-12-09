@@ -47,10 +47,6 @@ class RegisterView extends GetView<LoginController> {
               onPressed: controller.signUpUser,
               child: const Text("Register Now"),
             ),
-            const Text(
-              'RegisterView is working',
-              style: TextStyle(fontSize: 20),
-            ),
           ],
         ),
       ),

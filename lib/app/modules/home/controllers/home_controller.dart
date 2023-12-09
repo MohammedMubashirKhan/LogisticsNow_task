@@ -1,23 +1,21 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:logisticnow_task/app/modules/home/model/search_model.dart';
+import 'package:logisticnow_task/app/services/api_services.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  Rxn<SearchModel> searchModel = Rxn<SearchModel>();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  /// Call API with searchValue
+  onSearhFieldChange(String searchValue) async {
+    if (searchValue.length > 2) {
+      String? data = await ApiServices().getApi(searchValue);
+      if (data != null) {
+        searchModel.value = SearchModel.fromJson(jsonDecode(data));
+      }
+    } else {
+      searchModel.value = null;
+    }
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

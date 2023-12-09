@@ -47,10 +47,6 @@ class LoginView extends GetView<LoginController> {
               onPressed: controller.login,
               child: const Text("Log In"),
             ),
-            const Text(
-              'LoginView is working',
-              style: TextStyle(fontSize: 20),
-            ),
           ],
         ),
       ),
