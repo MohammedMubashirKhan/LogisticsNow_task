@@ -1,23 +1,46 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logisticnow_task/app/resources/auth_methods.dart';
+import 'package:logisticnow_task/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  clearTextField() {
+    emailController.clear();
+    passController.clear();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  /// Sign up a new user
+  signUpUser() async {
+    String res = await AuthMethods().signUpUser(
+      email: emailController.text,
+      password: passController.text,
+    );
+
+    Get.showSnackbar(
+      GetSnackBar(
+        title: "signUpUser",
+        message: res,
+        duration: const Duration(seconds: 5),
+      ),
+    );
+
+    if (res == 'success') {
+      Get.offAllNamed(Routes.WELCOME);
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  /// Login a user
+  login() async {
+    String res = await AuthMethods().loginUser(
+      email: emailController.text,
+      password: passController.text,
+    );
 
-  void increment() => count.value++;
+    if (res == 'success') {
+      Get.offAllNamed(Routes.HOME);
+    }
+  }
 }

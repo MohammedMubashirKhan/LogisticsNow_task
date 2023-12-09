@@ -8,6 +8,8 @@ class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.clearTextField();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('LoginView'),
@@ -19,20 +21,22 @@ class LoginView extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const TextField(
+            TextField(
+              controller: controller.emailController,
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter Email',
               ),
             ),
             const SizedBox(
               height: 8.0,
             ),
-            const TextField(
+            TextField(
+              controller: controller.passController,
               obscureText: true,
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your password',
               ),
             ),
@@ -40,7 +44,7 @@ class LoginView extends GetView<LoginController> {
               height: 24.0,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: controller.login,
               child: const Text("Log In"),
             ),
             const Text(

@@ -8,6 +8,8 @@ class RegisterView extends GetView<LoginController> {
   const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.clearTextField();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('RegisterView'),
@@ -19,20 +21,22 @@ class RegisterView extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const TextField(
+            TextField(
+              controller: controller.emailController,
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter Email',
               ),
             ),
             const SizedBox(
               height: 8.0,
             ),
-            const TextField(
+            TextField(
+              controller: controller.passController,
               obscureText: true,
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your password',
               ),
             ),
@@ -40,7 +44,7 @@ class RegisterView extends GetView<LoginController> {
               height: 24.0,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: controller.signUpUser,
               child: const Text("Register Now"),
             ),
             const Text(
