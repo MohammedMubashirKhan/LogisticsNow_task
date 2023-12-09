@@ -38,6 +38,13 @@ class LoginController extends GetxController {
       email: emailController.text,
       password: passController.text,
     );
+    Get.showSnackbar(
+      GetSnackBar(
+        title: "login",
+        message: res,
+        duration: const Duration(seconds: 5),
+      ),
+    );
 
     if (res == 'success') {
       Get.offAllNamed(Routes.HOME);
