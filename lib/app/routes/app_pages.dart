@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:logisticnow_task/app/modules/login/views/register_view.dart';
-import 'package:logisticnow_task/app/modules/login/views/welcome_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/welcome_view.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/login/views/register_view.dart';
 
 part 'app_routes.dart';
 

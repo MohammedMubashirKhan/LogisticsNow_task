@@ -58,7 +58,7 @@ class Location {
   String? state;
   String? label;
   int? score;
-  double? pincode;
+  int? pincode;
 
   Location(
       {this.suggestion,
@@ -80,7 +80,7 @@ class Location {
     state = json['state'];
     label = json['label'];
     score = json['score'];
-    pincode = json['pincode'];
+    pincode = json['pincode']?.toInt();
   }
 
   Map<String, dynamic> toJson() {

@@ -18,6 +18,7 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           children: [
             TextField(
+              controller: controller.searchController.value,
               decoration: const InputDecoration(
                 hintText: 'Search Place',
               ),
@@ -26,9 +27,29 @@ class HomeView extends GetView<HomeController> {
             const SizedBox(
               height: 24.0,
             ),
-            Expanded(
-              child: Obx(
-                () => ListView.builder(
+            Obx(() {
+              // when user hasn't type anything
+              if (controller.searchController.value.text.length <= 2) {
+                return const Center(
+                  child: Text("Type more than  2 character to search"),
+                );
+              }
+
+              if (controller.isLoading.value) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              // When no data found
+              if (controller.searchModel.value?.value?.isEmpty ?? true) {
+                return const Center(
+                  child: Text("No data found"),
+                );
+              }
+
+              return Expanded(
+                child: ListView.builder(
                   itemCount: controller.searchModel.value?.value?.length ?? 0,
                   itemBuilder: (context, index) {
                     return Obx(
@@ -58,8 +79,8 @@ class HomeView extends GetView<HomeController> {
                     );
                   },
                 ),
-              ),
-            )
+              );
+            })
           ],
         ),
       ),
